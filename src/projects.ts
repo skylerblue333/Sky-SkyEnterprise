@@ -12,6 +12,11 @@ export interface ProjectSnapshot extends Required<ProjectInput> {
   persistencePerformed: false;
 }
 
+export interface OrganizationMembershipLookup {
+  readonly id: string;
+  roleOf(userId: string): "owner" | "admin" | "member" | undefined;
+}
+
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,95}$/;
 const STATUSES = new Set<ProjectStatus>(["planned", "active", "paused", "completed"]);
 const MAX_PROJECTS = 1000;
@@ -71,4 +76,14 @@ export class ProjectRegistry {
       .sort((a, b) => a.id.localeCompare(b.id))
       .map((project) => structuredClone(project));
   }
+}
+
+export function createProjectForOrganization(
+  organization: OrganizationMembershipLookup,
+  registry: ProjectRegistry,
+  input: ProjectInput,
+): ProjectSnapshot {
+  if (organization.id !== input.organizationId) throw new Error("project organization does not match organization context");
+  if (!organization.roleOf(input.ownerId)) throw new Error("project owner must be an organization member");
+  return registry.create(input);
 }
