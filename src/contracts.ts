@@ -19,8 +19,8 @@ export interface ContractSnapshot {
   readonly title: string;
   readonly partyIds: readonly string[];
   readonly status: ContractStatus;
-  readonly effectiveAt?: number;
-  readonly expiresAt?: number;
+  readonly effectiveAt: number | undefined;
+  readonly expiresAt: number | undefined;
   readonly legalValidityVerified: false;
   readonly signaturePerformed: false;
 }
