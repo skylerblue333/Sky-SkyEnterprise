@@ -57,3 +57,12 @@ export {
   type ProjectSnapshot,
   type ProjectStatus,
 } from "./projects.js";
+
+export {
+  ContractRegistry,
+  createContractForOrganization,
+  type ContractInput,
+  type ContractSnapshot,
+  type ContractStatus,
+  type OrganizationContractMembershipLookup,
+} from "./contracts.js";
