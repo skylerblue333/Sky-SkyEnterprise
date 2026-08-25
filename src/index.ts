@@ -47,3 +47,13 @@ export class Organization {
     if (role !== "owner" && role !== "admin") throw new Error("admin role required");
   }
 }
+
+export {
+  ProjectRegistry,
+  createProjectForOrganization,
+  normalizeProject,
+  type OrganizationMembershipLookup,
+  type ProjectInput,
+  type ProjectSnapshot,
+  type ProjectStatus,
+} from "./projects.js";
