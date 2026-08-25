@@ -50,7 +50,9 @@ export class Organization {
 
 export {
   ProjectRegistry,
+  createProjectForOrganization,
   normalizeProject,
+  type OrganizationMembershipLookup,
   type ProjectInput,
   type ProjectSnapshot,
   type ProjectStatus,
